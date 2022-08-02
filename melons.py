@@ -46,7 +46,7 @@ def read_melon_types_from_file(filepath):
 
     melon_types = {}
 
-    with open(filepath) as file:
+    with open("melons.txt") as file:
         for line in file:
             (melon_id,
              melon_type,
