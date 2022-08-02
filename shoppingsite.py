@@ -149,17 +149,15 @@ def process_login():
     Find the user's login credentials located in the 'request.form'
     dictionary, look up the user, and store them in the session.
     """
-    if 'login' in session:
-        login = session['login']
-    else:
-        login = session['login'] = {}
 
     password = request.args.get("password")
     email = request.args.get("email")
     
-    if password and email == customers.get_by_email(email):
+    if customers.get_by_email(email) and password == customers.password:
         flash("Session is active!")
-        session['login'] = 'login'
+        login_credentials = {"password": "customers.password",
+                              "email": "customers.email"}
+        session['login'] = login_credentials
         return redirect("/melons")
     else:
         flash("Please log in!")
