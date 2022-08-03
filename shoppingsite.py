@@ -150,13 +150,12 @@ def process_login():
     dictionary, look up the user, and store them in the session.
     """
 
-    password = request.args.get("password")
     email = request.args.get("email")
     
-    if customers.get_by_email(email) and password == customers.password:
+    if email == customers.get_by_email(email):
         flash("Session is active!")
-        login_credentials = {"password": "customers.password",
-                              "email": "customers.email"}
+        login_credentials = {"password": "Grendel007!",
+                              "email": "email"}
         session['login'] = login_credentials
         return redirect("/melons")
     else:
